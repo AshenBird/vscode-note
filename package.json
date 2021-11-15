@@ -1,0 +1,67 @@
+{
+  "name": "note-pack",
+	"displayName": "note-pack",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.62.0"
+	},
+	"publisher": "McSwift",
+	"categories": [
+		"Extension Packs"
+	],
+	"activationEvents": [
+        "onCommand:note-pack.helloWorld"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration":{
+			"title": "note",
+			"properties":{
+				"note.mode":{
+					"type":"string",
+					"enum":["default","note"],
+					"enumDescriptions": [
+						"默认模式",
+						"笔记模式"
+					],
+					"default":"default"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "note-pack.turnOn",
+				"title": "Turn on note mode"
+			}
+		]
+	},
+	"extensionPack":[
+		"tomoki1207.pdf",
+		"GraphQL.vscode-graphql",
+		"hediet.vscode-drawio",
+		"gera2ld.markmap-vscode",
+		"McSwift.mcswift-mindmap"
+	],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.62.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^5.1.0",
+		"@typescript-eslint/parser": "^5.1.0",
+		"eslint": "^8.1.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.3",
+		"typescript": "^4.4.4",
+		"@vscode/test-electron": "^1.6.2"
+	}
+}
