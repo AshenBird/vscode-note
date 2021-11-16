@@ -1,6 +1,6 @@
 {
-  "name": "note-pack",
-	"displayName": "note-pack",
+	"name": "note-pack",
+	"displayName": "McSwift Note Kit",
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
@@ -8,42 +8,48 @@
 	},
 	"publisher": "McSwift",
 	"categories": [
+		"Other",
 		"Extension Packs"
 	],
 	"activationEvents": [
-        "onCommand:note-pack.helloWorld"
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"configuration":{
+		"configuration": {
 			"title": "note",
-			"properties":{
-				"note.mode":{
-					"type":"string",
-					"enum":["default","note"],
-					"enumDescriptions": [
-						"默认模式",
-						"笔记模式"
-					],
-					"default":"default"
+			"properties": {
+				"note.turnOn": {
+					"type": "boolean",
+					"default": false
 				}
 			}
+		},
+		"configurationDefaults": {
+			"note.turnOn": false
 		},
 		"commands": [
 			{
 				"command": "note-pack.turnOn",
-				"title": "Turn on note mode"
+				"title": "NoteMode: Turn on"
+			},
+			{
+				"command": "note-pack.turnOff",
+				"title": "NoteMode: Turn off"
 			}
 		]
 	},
-	"extensionPack":[
+	"extensionPack": [
 		"tomoki1207.pdf",
 		"GraphQL.vscode-graphql",
 		"hediet.vscode-drawio",
 		"gera2ld.markmap-vscode",
-		"McSwift.mcswift-mindmap"
+		"McSwift.mcswift-mindmap",
+		"csholmq.excel-to-markdown-table",
+		"tobiastao.vscode-md"
 	],
 	"scripts": {
+		"publish": "vsce publish",
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
