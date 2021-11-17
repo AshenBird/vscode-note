@@ -8,31 +8,38 @@ const N = "note.turnOn";
 
 const config = workspace.getConfiguration();
 
-const turnOff = () => {
-	const v = config.get("workbench.editorAssociations");
+const source:Record<string, unknown> = {};
+
+// @ts-ignore
+source.workbench = config.inspect("workbench.editorAssociations").workspaceValue;
+
+// @ts-ignore
+source.md = config.inspect("vscode-md.options.mode").workspaceValue;
+
+const turnOff = async () => {
+	console.log( "turnoff",source.md);
 	// @ts-ignore
-	v["*.md"]="default";
-	config.update("workbench.editorAssociations", v);
-	// config.update("vscode-md.options.mode", "ir");
+	// config.update("workbench.editorAssociations", source.workbench);
+	// config.update("vscode-md.options.mode", source.md);
 };
 
 const turnOn = () => {
-
-	const v = config.get("workbench.editorAssociations");
+	// @ts-ignore
+	const v = config.inspect("vscode-md.options.mode").workspaceValue||{};
 	// @ts-ignore
 	v["*.md"]="myEdit.markdown";
 	config.update("workbench.editorAssociations", v);
 	config.update("vscode-md.options.mode", "ir");
 };
 
-const noteModeSwitch = () => {
+const noteModeSwitch = async () => {
 	const config = workspace.getConfiguration();
 
 	if (!config.has(N)) { return; }
 
 	const isOpen = config.get(N);
 
-	isOpen ? turnOn() : turnOff();
+	isOpen ? turnOn() : turnOff().catch(e=>{console.log(e);});
 };
 
 export function activate(context: vscode.ExtensionContext) {
