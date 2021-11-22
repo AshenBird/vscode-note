@@ -2,7 +2,7 @@
 	"name": "note-pack",
 	"displayName": "McSwift Note Kit",
 	"description": "",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.62.0"
 	},
@@ -42,15 +42,14 @@
 	},
 	"extensionPack": [
 		"tomoki1207.pdf",
-		"GraphQL.vscode-graphql",
 		"hediet.vscode-drawio",
 		"gera2ld.markmap-vscode",
 		"McSwift.mcswift-mindmap",
 		"csholmq.excel-to-markdown-table",
-		"tobiastao.vscode-md"
+		"mcswift.mcswift-markdown"
 	],
 	"scripts": {
-		"publish": "vsce publish",
+		"pub": "vsce publish --yarn",
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
