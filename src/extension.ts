@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const config = workspace.getConfiguration();
 		const v = config.inspect("workbench.editorAssociations")?.workspaceValue || {};
 		// @ts-ignore
-		v["*.md"] = "myEdit.markdown";
+		v["*.md"] = "mcswift.vditer";
 		config.update("workbench.editorAssociations", v);
 	};
 
