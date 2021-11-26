@@ -14,8 +14,8 @@ const relativeSetting = [
 ];
 
 
-export function activate(context: vscode.ExtensionContext) {
-
+export const configCtrl =  (context:vscode.ExtensionContext)=>{
+  
 	const workspaceURI = workspace.workspaceFolders?.[0].uri.toString() || '';
 
 	const getHistorySetting = () => context.globalState.get(`${workspaceURI}-settingHistory`) as Record<string, unknown>;
@@ -36,7 +36,6 @@ export function activate(context: vscode.ExtensionContext) {
 		const v = (config.inspect("workbench.editorAssociations")?.workspaceValue || {}) as Record<string, unknown>;
 		Reflect.deleteProperty(v,"*.md");
 		const isEmpty = Object.keys(v).length === 0;
-		console.log(isEmpty);
 		config.update("workbench.editorAssociations", isEmpty ? undefined : v);
 	};
 
@@ -45,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const config = workspace.getConfiguration();
 		const v = config.inspect("workbench.editorAssociations")?.workspaceValue || {};
 		// @ts-ignore
-		v["*.md"] = "mcswift.vditer";
+		v["*.md"] = "mcswift.vditor";
 		config.update("workbench.editorAssociations", v);
 	};
 
@@ -79,9 +78,5 @@ export function activate(context: vscode.ExtensionContext) {
 	const turnOffCMD = vscode.commands.registerCommand('note-pack.turnOff', () => {
 		config.update(N, false);
 	});
-
-	context.subscriptions.push(turnOnCMD, turnOffCMD, configChangeListener);
-}
-
-// this method is called when your extension is deactivated
-export function deactivate() { }
+  return [turnOnCMD, turnOffCMD, configChangeListener];
+};

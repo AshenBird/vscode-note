@@ -7,3 +7,5 @@
 - 框图工具
 - pdf 阅读工具
 - epub 阅读工具
+
+deprecated
