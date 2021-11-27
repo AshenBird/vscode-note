@@ -6,9 +6,9 @@ const { createClientBuildConfig, getPath } = require("./utils");
 fs.ensureDir(getPath("out"));
 
 const build = async () => {
-  vite.build(createClientBuildConfig("vditor"));
-  const hostBuilder = execa("npm", ["run", "watch:host"]);
-  hostWatcher.stdout.pipe(process.stdout);
+  // vite.build(createClientBuildConfig("vditor"));
+  const hostBuilder = execa("npm", ["run", "build:host"]);
+  hostBuilder.stdout.pipe(process.stdout);
 };
 
 build();

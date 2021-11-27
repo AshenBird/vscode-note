@@ -62,7 +62,6 @@ export const configCtrl =  (context:vscode.ExtensionContext)=>{
 	// 监听配置
 	const configChangeListener = workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
 		if (e.affectsConfiguration(N)) {
-
 			noteModeSwitch();
 		}
 	});
